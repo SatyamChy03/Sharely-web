@@ -1,0 +1,122 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Sharely v3 colour tokens, shared with the app. */
+  --color-ink: #071a2d;
+  --color-ink-deep: #051425;
+  --color-surface: #0d2742;
+  --color-elevated: #123556;
+  --color-line: #1b3f63;
+  --color-line-strong: #24507a;
+  --color-cyan: #71c9ce;
+  --color-cyan-hover: #8de0e4;
+  --color-aqua: #a6e3e9;
+  --color-fg: #f5fafc;
+  --color-muted: #91a9ba;
+  --color-success: #52d273;
+  --color-danger: #ff647c;
+
+  --radius-card: 20px;
+  --radius-zone: 16px;
+  --radius-btn: 10px;
+  --radius-badge: 6px;
+
+  --ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --animate-flow-right: flow-right 3.2s var(--ease-soft) infinite;
+  --animate-flow-left: flow-left 3.2s var(--ease-soft) 1.6s infinite;
+  --animate-rise: rise 0.4s var(--ease-soft) both;
+
+  @keyframes flow-right {
+    0% {
+      offset-distance: 0%;
+      opacity: 0;
+    }
+    12%,
+    82% {
+      opacity: 1;
+    }
+    100% {
+      offset-distance: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes flow-left {
+    0% {
+      offset-distance: 100%;
+      opacity: 0;
+    }
+    12%,
+    82% {
+      opacity: 1;
+    }
+    100% {
+      offset-distance: 0%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes rise {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-ink);
+    color: var(--color-fg);
+    scroll-behavior: smooth;
+    /* Keeps anchored sections clear of the sticky header. */
+    scroll-padding-top: 88px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background: #71c9ce59;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cyan-hover);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(90deg, #1b3f6373 1px, transparent 1px),
+    linear-gradient(#1b3f6373 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(70% 60% at 60% 40%, #000 30%, transparent 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
